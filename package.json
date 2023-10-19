@@ -1,12 +1,12 @@
 {
-  "name": "nestjs-easy-auth",
+  "name": "nestjs-easy-auth-mongo",
   "version": "0.1.0",
-  "description": "User authentication for NestJS.",
+  "description": "MongoDB storage provider for NestJS Easy Auth.",
   "author": "bpisano",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bpisano/nestjs-easy-auth.git"
+    "url": "git+https://github.com/bpisano/nestjs-easy-auth-mongo.git"
   },
   "publishConfig": {
     "@bpisano:registry": "https://npm.pkg.github.com"
