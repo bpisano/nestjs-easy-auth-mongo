@@ -1,4 +1,4 @@
-import { CredentialsRepresentation, DatabaseModelOf, MapCredentialsParams } from 'nestjs-easy-auth';
+import { CredentialsRepresentation } from 'nestjs-easy-auth';
 import { DBCredentialsDocumentMock } from '../db/dbCredentials.mock';
 import { PublicCredentialsMock } from '../public/publicCredentials.mock';
 
@@ -11,17 +11,6 @@ export class CredentialsMock implements CredentialsRepresentation<DBCredentialsD
     public readonly accessTokenExpiration: Date,
     public readonly refreshTokenExpiration: Date
   ) {}
-
-  public static fromMapCredentials(params: MapCredentialsParams): Partial<DatabaseModelOf<CredentialsMock>> {
-    return {
-      userId: params.userId,
-      authType: params.authType,
-      accessToken: params.accessToken,
-      refreshToken: params.refreshToken,
-      accessTokenExpiration: params.accessTokenExpiration,
-      refreshTokenExpiration: params.refreshTokenExpiration
-    };
-  }
 
   public toDatabaseModel(): DBCredentialsDocumentMock {
     return {

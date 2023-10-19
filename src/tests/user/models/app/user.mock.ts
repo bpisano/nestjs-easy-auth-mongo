@@ -1,5 +1,5 @@
 import { Types } from 'mongoose';
-import { DatabaseModelOf, SignInEmailPasswordInput, UserRepresentation } from 'nestjs-easy-auth';
+import { UserRepresentation } from 'nestjs-easy-auth';
 import { DBUserDocumentMock } from '../db/dbUser.mock';
 import { PublicUserMock } from '../public/publicUser.mock';
 
@@ -9,13 +9,6 @@ export class UserMock implements UserRepresentation<DBUserDocumentMock, PublicUs
     public readonly email: string,
     public readonly hashedPassword?: string
   ) {}
-
-  public static fromSignInEmailPassword(input: SignInEmailPasswordInput): Partial<DatabaseModelOf<UserMock>> {
-    return {
-      email: input.email,
-      hashedPassword: input.password
-    };
-  }
 
   public toDatabaseModel(): DBUserDocumentMock {
     return {

@@ -2,10 +2,9 @@ import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import {
   AuthModule,
-  MapCredentialsParams,
+  DefaultModelProvider,
   Optional,
   SignInEmailPassword,
-  SignInEmailPasswordInput,
   USER_SERVICE,
   UserService
 } from 'nestjs-easy-auth';
@@ -28,12 +27,11 @@ describe('SignInEmailPassword', () => {
         AuthMongoProviderModule.withConfiguration(mongoConfigMock),
         AuthModule.withConfiguration({
           jwtConfig: jwtConfigMock,
-          mapCredentials: (params: MapCredentialsParams) => CredentialsMock.fromMapCredentials(params),
-          authMethods: [
-            new SignInEmailPassword({
-              mapUser: (input: SignInEmailPasswordInput) => UserMock.fromSignInEmailPassword(input)
-            })
-          ]
+          modelProvider: DefaultModelProvider.withModels({
+            credentials: CredentialsMock,
+            user: UserMock
+          }),
+          methods: [SignInEmailPassword.forRoot()]
         })
       ]
     }).compile();

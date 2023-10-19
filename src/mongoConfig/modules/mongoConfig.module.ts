@@ -9,9 +9,9 @@ import { MONGO_CREDENTIALS_MODEL, MONGO_DB, MONGO_USER_MODEL } from './mongoConf
 export class MongoConfigModule {
   public static withConfiguration(config: MongoConfig): DynamicModule {
     const credentialsSchemaModule: any = MongooseModule.forFeature([
-      { name: MONGO_CREDENTIALS_MODEL, schema: config.credentialsSchema }
+      { name: MONGO_CREDENTIALS_MODEL, schema: config.schemas.credentials }
     ]);
-    const userSchemaModule: any = MongooseModule.forFeature([{ name: MONGO_USER_MODEL, schema: config.userSchema }]);
+    const userSchemaModule: any = MongooseModule.forFeature([{ name: MONGO_USER_MODEL, schema: config.schemas.user }]);
     return {
       module: MongoConfigModule,
       imports: [
